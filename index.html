@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Crossr</title>
+  <link rel="icon" type="image/png" href="Add_a_heading_11.png">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --main-bg: #ffffff;
+      --card-bg: #fff;
+      --border: #000000;
+      --accent: #18181b;
+      --muted: #63636a;
+      --shadow: 0 4px 24px 0 rgba(30,30,40,0.07);
+      --radius: 22px;
+      --nav-height: 60px;
+      --max-content: 1200px;
+      --divider: #111;
+      --dot-size: 64px;
+    }
+    html, body {
+      background: #ffffff;
+      color: var(--accent);
+      font-family: 'Inter', Arial, sans-serif;
+      margin: 0;
+      min-height: 100vh;
+      width: 100vw;
+      overflow-x: hidden;
+    }
+    header, footer { position: relative; z-index: 4; background: #fff; }
+    main, .container, section { position: relative; z-index: 2; }
+    header {
+      width: 100vw;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      min-height: var(--nav-height);
+      box-shadow: 0 1px 8px rgba(30,30,40,0.02);
+    }
+    .navbar {
+      width: 100%;
+      max-width: var(--max-content);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+      height: var(--nav-height);
+      margin: 0 auto;
+    }
+    .logo {
+      font-weight: 900;
+      font-size: 1.5rem;
+      letter-spacing: -1px;
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo-img {
+      height: 38px;
+      width: 38px;
+      vertical-align: middle;
+      margin-right: 8px;
+      border-radius: 10px;
+      background: #fff;
+      object-fit: cover;
+    }
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 2.6rem;
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1.14rem;
+      padding: 7px 14px;
+      border-radius: 9px;
+      transition: background 0.18s, color 0.18s;
+      background: none;
+    }
+    nav a:hover {
+      color: var(--accent);
+      background: #f1f1f3;
+    }
+    main {
+      width: 100vw;
+      display: flex;
+      justify-content: center;
+      min-height: 80vh;
+    }
+    .container {
+      width: 100%;
+      max-width: var(--max-content);
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin: 0 24px;
+    }
+    .divider {
+      width: 100vw;
+      margin-left: calc(-50vw + 50%);
+      height: 3px;
+      background: var(--divider);
+      border: none;
+      margin-top: 2.5rem;
+      margin-bottom: 2.5rem;
+      display: block;
+      z-index: 3;
+      position: relative;
+    }
+    .intro-section {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 58px;
+      padding: 38px 0 32px 0;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .intro-content {
+      flex: 1.2;
+      min-width: 330px;
+      margin-left: 25px;
+    }
+    .intro-label {
+      display: inline-block;
+      background: #111;
+      color: #fff;
+      font-size: 1.07rem;
+      font-weight: 800;
+      border-radius: 22px;
+      padding: 8px 26px;
+      margin-bottom: 22px;
+      box-shadow: 0 2px 22px #1111;
+      letter-spacing: 0.1px;
+    }
+    .intro-title {
+      font-size: 2.9rem;
+      font-weight: 900;
+      letter-spacing: -1.2px;
+      margin-bottom: 12px;
+      color: var(--accent);
+    }
+    .intro-desc {
+      font-size: 1.18rem;
+      margin-bottom: 12px;
+      color: var(--muted);
+    }
+    .intro-bold {
+      font-weight: 700;
+      color: var(--accent);
+      font-size: 1.1em;
+      margin-top: 10px;
+      display: block;
+    }
+    .intro-img {
+      flex: 1;
+      max-width: 420px;
+      min-width: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .intro-img img, .intro-img video {
+      width: 90%;
+      max-width: 350px;
+      border-radius: 22px;
+      box-shadow: 0 4px 34px #1112;
+      background: #fff;
+      object-fit: cover;
+    }
+    .features-wrap { margin-bottom: 2.5rem; }
+    .features-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 2.2rem;
+      letter-spacing: -1px;
+      color: var(--accent);
+      text-align: center;
+    }
+    .features-cards {
+      display: flex;
+      justify-content: center;
+      gap: 2.1rem;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 1.7rem 1.5rem 1.4rem 1.5rem;
+      min-width: 270px;
+      max-width: 340px;
+      flex: 1 1 0;
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+      align-items: flex-start;
+      min-height: 180px;
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.18s;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 34px 0 rgba(0,0,0,0.12);
+      border-color: #222;
+      transform: translateY(-2px) scale(1.025);
+    }
+    .feature-card.bg-1::after {
+      content: "";
+      position: absolute;
+      bottom: -20px; right: -12px;
+      width: 80%; height: 80%;
+      background: url('8.png') no-repeat bottom right;
+      background-size: contain;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .feature-card.bg-2::after {
+      content: "";
+      position: absolute;
+      bottom: -18px; right: -10px;
+      width: 80%; height: 80%;
+      background: url('12.png') no-repeat bottom right;
+      background-size: contain;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .feature-card.bg-3::after {
+      content: "";
+      position: absolute;
+      bottom: -18px; right: -10px;
+      width: 80%; height: 80%;
+      background: url('10.png') no-repeat bottom right;
+      background-size: contain;
+      opacity: 0.13;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .feature-title { font-size: 1.16rem; font-weight: 800; color: var(--accent); letter-spacing: -0.2px; z-index: 1; }
+    .feature-list { list-style: none; padding: 0; margin: 0;}
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      font-size: 1.02rem;
+      margin-bottom: 0.7em;
+      gap: 13px;
+      z-index: 1;
+      position: relative;
+    }
+    .feature-list li::before {
+      content: "";
+      background: url('9.png') no-repeat center center/23px 23px;
+      width: 23px; height: 23px;
+      margin-top: 2px;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+    .roadmap-wrap {
+      max-width: 1100px;
+      margin: 0 auto 3.5rem auto;
+      padding-bottom: 1.6rem;
+      position: relative;
+    }
+    .roadmap-title {
+      font-size: 2.35rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 1.1rem;
+      color: var(--accent);
+      position: relative;
+      z-index: 1;
+    }
+    .roadmap-timeline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 62px;
+      width: 100%;
+      position: relative;
+      min-height: 130px;
+      margin-top: 80px; 
+    }
+    .timeline-line {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      height: 5px;
+      background: linear-gradient(90deg,#aaa 0%,#111 50%,#aaa 100%);
+      z-index: 1;
+      border-radius: 10px;
+      pointer-events: none;
+    }
+    .timeline-dot {
+      position: relative;
+      width: 64px;
+      height: 64px;
+      background: #fff;
+      border: 3.5px solid #111;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 2.1rem;
+      color: #18181b;
+      box-shadow: 0 2px 18px #18181b25;
+      cursor: pointer;
+      z-index: 1;
+      isolation: isolate;
+      transition: background 0.14s, border 0.14s, color 0.14s, transform 0.14s;
+    }
+    .timeline-dot:hover, .timeline-dot:focus {
+      background: #18181b;
+      color: #fff;
+      border-color: #111;
+      transform: scale(1.07);
+    }
+    .timeline-label {
+      display: block;
+      margin-top: 10px;
+      font-size: 1.09rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-align: center;
+      pointer-events: none;
+      user-select: none;
+      position: absolute;
+      left: 50%;
+      top: 70px;
+      transform: translateX(-50%);
+      width: 100px;
+    }
+    .roadmap-tooltip {
+      display: block;
+      position: absolute;
+      left: 50%;
+      bottom: 82px;
+      transform: translateX(-50%);
+      background: #fff;
+      color: var(--accent);
+      min-width: 290px;
+      max-width: 350px;
+      border-radius: 20px;
+      box-shadow: 0 8px 32px #0003, 0 2px 8px #1113;
+      padding: 1.1rem 1.3rem 1.25rem 1.3rem;
+      font-size: 1.1rem;
+      border: 2px solid #111;
+      z-index: 999999;
+      pointer-events: auto;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s, visibility 0.2s;
+      animation: none;
+    }
+    .timeline-dot:hover .roadmap-tooltip,
+    .timeline-dot:focus .roadmap-tooltip {
+      opacity: 1;
+      visibility: visible;
+      animation: tooltip-pop 0.18s cubic-bezier(.4,0,.2,1);
+      z-index: 999999;
+    }
+    @keyframes tooltip-pop {
+      0% { opacity: 0; transform: translate(-50%, -20px) scale(0.94);}
+      100% { opacity: 1; transform: translate(-50%, 0) scale(1);}
+    }
+    .roadmap-tooltip .goal {
+      font-weight: 800;
+      color: #18181b;
+      margin-bottom: 0.55em;
+      font-size: 1.17em;
+      display: block;
+    }
+    .roadmap-tooltip .impact {
+      color: #444;
+      font-size: 1.06em;
+      margin-top: 0.3em;
+    }
+    .breakdown-section {
+      max-width: 1120px;
+      margin: 0 auto 2.5rem auto;
+      padding-bottom: 0.3em;
+    }
+    .breakdown-title {
+      font-size: 2.18rem;
+      font-weight: 900;
+      text-align: center;
+      margin-bottom: 1.2em;
+      letter-spacing: -1px;
+      color: var(--accent);
+    }
+    .breakdown-section-card {
+      background: rgba(255,255,255,0.97);
+      border: 1.8px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.1rem 2.7rem 1.7rem 2.7rem;
+      font-size: 1.18rem;
+      color: var(--accent);
+      margin-bottom: 1.2em;
+      position: relative;
+      max-width: 1100px;
+      margin-left: auto;
+      margin-right: auto;
+      overflow: hidden;
+      display: block;
+      min-width: 370px;
+      min-height: 325px;
+    }
+    .breakdown-section-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url('7.png') center center/75% no-repeat;
+      opacity: 0.13;
+      z-index: 0;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .breakdown-section-card * { position: relative; z-index: 1; }
+    .breakdown-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 1.11em;
+    }
+    .breakdown-table tr {
+      vertical-align: top;
+      line-height: 1.85;
+    }
+    .breakdown-table td {
+      padding: 0.7em 0.2em 0.5em 0.2em;
+      border: none;
+    }
+    .breakdown-table td:first-child {
+      font-weight: 800;
+      min-width: 175px;
+      white-space: nowrap;
+      text-align: left;
+    }
+    .breakdown-table td:last-child {
+      padding-left: 1.8em;
+      font-weight: 400;
+    }
+    .breakdown-section-card .breakdown-bullet {
+      background: url('9.png') no-repeat center center/23px 23px;
+      width: 23px; height: 23px;
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 8px;
+    }
+    .breakdown-section-card .breakdown-table tr {
+      margin-bottom: 1.1em;
+    }
+    .livefeed-section {
+      max-width: 1120px;
+      margin: 0 auto 2.7rem auto;
+      padding-bottom: 0.3em;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 48px;
+    }
+    .livefeed-info {
+      flex: 1 1 260px;
+      font-size: 1.16rem;
+      padding-top: 1.1em;
+      padding-left: 12px;
+      font-weight: 500;
+      color: var(--accent);
+      min-width: 240px;
+    }
+    .livefeed-card {
+      flex: 2.2 1 440px;
+      background: var(--card-bg);
+      border: 1.8px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 2.1rem 2.7rem 1.7rem 2.7rem;
+      min-height: 320px;
+      min-width: 380px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+    .livefeed-title {
+      font-size: 1.25rem;
+      font-weight: 800;
+      margin-bottom: 1.1em;
+    }
+    .livefeed-btn {
+      display: inline-block;
+      font-size: 1.14rem;
+      font-weight: 700;
+      background: linear-gradient(95deg,#111 60%,#333 100%);
+      color: #fff;
+      padding: 14px 32px;
+      border-radius: 15px;
+      margin-bottom: 18px;
+      box-shadow: 0 2px 18px #1112;
+      letter-spacing: 0.03em;
+      border: none;
+      cursor: pointer;
+      margin-top: 14px;
+      transition: background 0.18s, transform 0.15s;
+      outline: none;
+      animation: pulse-btn 2.4s infinite cubic-bezier(.4,0,.2,1);
+    }
+    .livefeed-btn:hover, .livefeed-btn:focus {
+      background: linear-gradient(95deg,#222 40%,#444 100%);
+      transform: scale(1.04);
+    }
+    @keyframes pulse-btn {
+      0% { box-shadow: 0 2px 18px #18181b22; }
+      70% { box-shadow: 0 0px 36px #1115; }
+      100% { box-shadow: 0 2px 18px #18181b22; }
+    }
+    .twitter-embed {
+      width: 100%;
+      height: 310px;
+      overflow: auto;
+      background: #fff;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-top: 14px;
+    }
+    @media (max-width: 1050px) {
+      .livefeed-section {
+        flex-direction: column;
+        gap: 22px;
+      }
+      .livefeed-card {
+        min-width: unset;
+      }
+    }
+    @media (max-width: 700px) {
+      .intro-section {
+        flex-direction: column;
+        gap: 18px;
+      }
+      .intro-img {
+        margin-bottom: 0.6em;
+      }
+      .livefeed-card, .breakdown-section-card { padding: 1.2rem; }
+    }
+    @media (max-width: 900px) {
+      .features-cards {
+        flex-direction: column;
+        gap: 1.6rem;
+        align-items: center;
+      }
+    }
+    .faq-section {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto 2.6rem auto;
+      padding-bottom: 1.2rem;
+    }
+    .faq-title {
+      text-align: center;
+      font-size: 2.2rem;
+      font-weight: 900;
+      margin-bottom: 2rem;
+      letter-spacing: -1px;
+      color: var(--accent);
+    }
+    .faq-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.3rem;
+    }
+    .faq-item {
+      background: #fff;
+      border-radius: 19px;
+      box-shadow: 0 4px 22px #0001;
+      border: 1.2px solid var(--border);
+      padding: 1.25em 2em 1.25em 2em;
+      font-size: 1.13rem;
+      font-weight: 700;
+      min-height: 74px;
+      transition: box-shadow 0.18s, border 0.18s;
+      position: relative;
+    }
+    .faq-item:hover, .faq-item:focus {
+      box-shadow: 0 8px 24px #1112;
+      border: 1.2px solid #aaa;
+    }
+    .faq-answer {
+      font-weight: 400;
+      font-size: 1.08rem;
+      color: #474747;
+      margin-top: 0.55em;
+      transition: max-height 0.18s;
+      min-height: 1.7em;
+      display: block;
+    }
+    footer {
+      width: 100vw;
+      background: #fff;
+      text-align: center;
+      padding: 2em 0 1em 0;
+      color: #888;
+      border-top: 1px solid var(--border);
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .footer-logo {
+      height: 32px;
+      width: 32px;
+      vertical-align: middle;
+      margin-right: 0.7em;
+      border-radius: 8px;
+      background: #fff;
+      object-fit: cover;
+    }
+    #bg-video, #bg-video-canvas {
+      position: fixed;
+      left: 0; top: 0;
+      width: 100vw; height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      margin: 0; padding: 0;
+      border: none;
+      outline: none;
+      display: block;
+      user-select: none;
+    }
+    #bg-video { visibility: hidden; }
+  </style>
+</head>
+<body>
+  <video id="bg-video" src="video.mp4" autoplay loop muted playsinline></video>
+  <canvas id="bg-video-canvas"></canvas>
+
+  <header>
+    <div class="navbar">
+      <span class="logo">
+        <img class="logo-img" src="Add_a_heading_11.png" alt="Crossr Logo" />
+        Crossr
+      </span>
+      <nav>
+        <a href="#intro">Intro</a>
+        <a href="#features">Features</a>
+        <a href="#roadmap">Roadmap</a>
+        <a href="#breakdown">Breakdown</a>
+        <a href="#livefeed">Live Feed</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <section id="intro" class="intro-section">
+        <div class="intro-content">
+          <span class="intro-label">AI-Powered Crypto Market Intelligence</span>
+          <h1 class="intro-title">Welcome to Crossr</h1>
+          <div class="intro-desc">
+            Precision. Speed. Clarity.<br>
+            <b>Crossr</b> brings you actionable crypto insights, chart patterns, and market signals—automatically, every day.
+            <span class="intro-bold">Never miss a trade, never fall behind.</span>
+          </div>
+        </div>
+        <div class="intro-img">
+          <video autoplay loop muted playsinline style="width: 90%; max-width: 350px; border-radius: 22px; box-shadow: 0 4px 34px #1112; background: #fff; object-fit: cover;">
+            <source src="video.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </section>
+      <hr class="divider">
+      <section id="features" class="features-wrap">
+        <h2 class="features-title">Features</h2>
+        <div class="features-cards">
+          <div class="feature-card bg-1">
+            <div class="feature-title">Pattern recognition using AI</div>
+            <ul class="feature-list">
+              <li>Uncover trends and formation shifts automatically.</li>
+              <li>AI analyzes thousands of charts daily—no manual searching.</li>
+            </ul>
+          </div>
+          <div class="feature-card bg-2">
+            <div class="feature-title">Real-time market alerts</div>
+            <ul class="feature-list">
+              <li>Instant notifications for rapid changes or critical events.</li>
+              <li>Capitalize on opportunities and manage risk before the crowd.</li>
+            </ul>
+          </div>
+          <div class="feature-card bg-3">
+            <div class="feature-title">Automated daily reports</div>
+            <ul class="feature-list">
+              <li>Comprehensive daily summaries and actionable insights.</li>
+              <li>Tailored for the fast-moving crypto market.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <hr class="divider">
+      <section id="roadmap" class="roadmap-wrap">
+        <h2 class="roadmap-title">Roadmap</h2>
+        <div class="roadmap-timeline">
+          <div class="timeline-line"></div>
+          <div class="timeline-dot" tabindex="0">
+            1
+            <div class="roadmap-tooltip">
+              <span class="goal">Launch Automated Chart Analysis</span>
+              <span class="impact">Deploy the AI engine for daily pattern detection and start publishing signals to Crossr's feed.</span>
+            </div>
+            <span class="timeline-label">Q2<br>2025</span>
+          </div>
+          <div class="timeline-dot" tabindex="0">
+            2
+            <div class="roadmap-tooltip">
+              <span class="goal">Integrate Wallet Tracking</span>
+              <span class="impact">Add wallet tracking for transparent trade analytics and community leaderboards.</span>
+            </div>
+            <span class="timeline-label">Q3<br>2025</span>
+          </div>
+          <div class="timeline-dot" tabindex="0">
+            3
+            <div class="roadmap-tooltip">
+              <span class="goal">Community Analytics</span>
+              <span class="impact">Build tools for in-depth community sentiment analysis and peer leaderboards.</span>
+            </div>
+            <span class="timeline-label">Q4<br>2025</span>
+          </div>
+          <div class="timeline-dot" tabindex="0">
+            4
+            <div class="roadmap-tooltip">
+              <span class="goal">Custom Strategies</span>
+              <span class="impact">Enable users to deploy their own automated strategies and backtesting.</span>
+            </div>
+            <span class="timeline-label">Q1<br>2026</span>
+          </div>
+          <div class="timeline-dot" tabindex="0">
+            5
+            <div class="roadmap-tooltip">
+              <span class="goal">API Release</span>
+              <span class="impact">Release public API for developers and external integrations.</span>
+            </div>
+            <span class="timeline-label">Q2<br>2026</span>
+          </div>
+        </div>
+      </section>
+      <hr class="divider">
+      <section id="breakdown" class="breakdown-section">
+        <h2 class="breakdown-title">Analysis Breakdown</h2>
+        <div class="breakdown-section-card">
+          <table class="breakdown-table">
+            <tr>
+              <td><span class="breakdown-bullet"></span>Data Ingestion:</td>
+              <td>Collects live price, volume, and order book data from top exchanges and providers.</td>
+            </tr>
+            <tr>
+              <td><span class="breakdown-bullet"></span>AI Pattern Detection:</td>
+              <td>Deep learning models find technical patterns, breakout signals, and anomalies.</td>
+            </tr>
+            <tr>
+              <td><span class="breakdown-bullet"></span>Signal Generation:</td>
+              <td>Actionable alerts and summaries rated by confidence are posted to your feed.</td>
+            </tr>
+            <tr>
+              <td><span class="breakdown-bullet"></span>Transparency & Learning:</td>
+              <td>Every analysis includes context, breakdowns, and explanations for your strategy.</td>
+            </tr>
+          </table>
+          <div style="margin-top:2em;color:#666;font-size:1rem;">
+            For details and latest sample analysis, follow our <a href="https://x.com/AiCrossr" style="color:#3737c4;text-decoration:underline;" target="_blank">X.com feed</a>.
+          </div>
+        </div>
+      </section>
+      <hr class="divider">
+      <section id="livefeed" class="livefeed-section">
+        <div class="livefeed-info">
+          <b>Live Feed:</b><br>
+          Stay updated with real-time AI market insights, fresh technical patterns, and trading alerts posted directly to our X.com account.
+          <br>
+          <button class="livefeed-btn" onclick="window.open('https://x.com/AiCrossr','_blank')">
+            View Live Features &rarr;
+          </button>
+        </div>
+        <div class="livefeed-card">
+          <div class="livefeed-title">Latest Analysis (via X.com)</div>
+          <div class="twitter-embed">
+            <a class="twitter-timeline" data-height="270" href="https://twitter.com/AiCrossr?ref_src=twsrc%5Etfw">Tweets by AiCrossr</a>
+          </div>
+        </div>
+      </section>
+      <hr class="divider">
+      <section id="faq" class="faq-section">
+        <h2 class="faq-title">FAQ</h2>
+        <div class="faq-list">
+          <div class="faq-item">
+            What is Crossr?
+            <div class="faq-answer">
+              Crossr is an AI-powered crypto market analysis tool providing actionable insights and daily signals for traders.
+            </div>
+          </div>
+          <div class="faq-item">
+            How often is the analysis updated?
+            <div class="faq-answer">
+              Every day! Crossr posts daily chart patterns, market analysis, and real-time alerts as new data emerges.
+            </div>
+          </div>
+          <div class="faq-item">
+            Can I connect my portfolio?
+            <div class="faq-answer">
+              Yes—upcoming wallet tracking features will let you link your accounts for transparent analytics and leaderboards.
+            </div>
+          </div>
+          <div class="faq-item">
+            Is there an API?
+            <div class="faq-answer">
+              Yes! The Crossr public API is scheduled for Q2 2026. Stay tuned for developer documentation and integrations.
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <footer>
+    <img class="footer-logo" src="Add_a_heading_11.png" alt="Crossr logo" />
+    <b>Crossr</b>
+    <br>
+    &copy; 2025 All rights reserved.
+  </footer>
+  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  <script>
+    const bgVideo = document.getElementById('bg-video');
+    const bgCanvas = document.getElementById('bg-video-canvas');
+    const ctx = bgCanvas.getContext('2d');
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    const RADIUS = 20; // Feathered circle radius in px
+    const FEATHER = 10; // Feathered softness in px
+
+    function resizeBgCanvas() {
+      bgCanvas.width = window.innerWidth;
+      bgCanvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resizeBgCanvas);
+    resizeBgCanvas();
+
+    document.addEventListener('mousemove', function(e) {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+    });
+
+    function drawCircleVideo() {
+      ctx.clearRect(0, 0, bgCanvas.width, bgCanvas.height);
+      if (bgVideo.readyState >= 2) {
+        ctx.save();
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, RADIUS, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.clip();
+
+        let videoRatio = bgVideo.videoWidth / bgVideo.videoHeight;
+        let canvasRatio = bgCanvas.width / bgCanvas.height;
+        let drawWidth, drawHeight, offsetX, offsetY;
+        if (videoRatio > canvasRatio) {
+          drawHeight = bgCanvas.height;
+          drawWidth = bgCanvas.height * videoRatio;
+          offsetX = (bgCanvas.width - drawWidth) / 2;
+          offsetY = 0;
+        } else {
+          drawWidth = bgCanvas.width;
+          drawHeight = bgCanvas.width / videoRatio;
+          offsetX = 0;
+          offsetY = (bgCanvas.height - drawHeight) / 2;
+        }
+        ctx.drawImage(bgVideo, offsetX, offsetY, drawWidth, drawHeight);
+        ctx.restore();
+
+        ctx.save();
+        ctx.globalCompositeOperation = 'destination-in';
+        let grad = ctx.createRadialGradient(mouseX, mouseY, RADIUS - FEATHER, mouseX, mouseY, RADIUS);
+        grad.addColorStop(0, 'rgba(255,255,255,1)');
+        grad.addColorStop(1, 'rgba(255,255,255,0)');
+        ctx.beginPath();
+        ctx.arc(mouseX, mouseY, RADIUS, 0, Math.PI * 2, false);
+        ctx.closePath();
+        ctx.fillStyle = grad;
+        ctx.fill();
+        ctx.restore();
+      }
+      requestAnimationFrame(drawCircleVideo);
+    }
+    bgVideo.addEventListener('play', function() {
+      drawCircleVideo();
+    });
+    if (bgVideo.readyState >= 2) drawCircleVideo();
+  </script>
+</body>
+</html>
