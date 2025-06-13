@@ -114,67 +114,81 @@
       z-index: 3;
       position: relative;
     }
+
+    /* Intro Section - MODIFIED */
     .intro-section {
       display: flex;
+      flex-direction: column;
       align-items: center;
-      justify-content: flex-start;
-      gap: 58px;
-      padding: 38px 0 32px 0;
+      justify-content: center;
+      padding: 58px 0 44px 0;
       max-width: 1200px;
       margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    /* background image styling */
+    .intro-bg-img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -54%);
+      width: 650px;
+      max-width: 95vw;
+      min-width: 250px;
+      opacity: 0.08; /* adjust transparency here */
+      z-index: 0;
+      pointer-events: none;
+      user-select: none;
     }
     .intro-content {
-      flex: 1.2;
-      min-width: 330px;
-      margin-left: 25px;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
     }
     .intro-label {
       display: inline-block;
       background: #111;
       color: #fff;
-      font-size: 1.07rem;
+      font-size: 1.23rem;
       font-weight: 800;
-      border-radius: 22px;
-      padding: 8px 26px;
-      margin-bottom: 22px;
+      border-radius: 30px;
+      padding: 12px 40px;
+      margin-bottom: 38px;
       box-shadow: 0 2px 22px #1111;
       letter-spacing: 0.1px;
     }
     .intro-title {
-      font-size: 2.9rem;
+      font-size: 4.5rem;
       font-weight: 900;
-      letter-spacing: -1.2px;
-      margin-bottom: 12px;
+      letter-spacing: -2px;
+      margin-bottom: 25px;
       color: var(--accent);
+      line-height: 1.08;
     }
     .intro-desc {
-      font-size: 1.18rem;
-      margin-bottom: 12px;
+      font-size: 2rem;
+      margin-bottom: 22px;
       color: var(--muted);
+      line-height: 1.5;
+      font-weight: 500;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
     }
     .intro-bold {
       font-weight: 700;
       color: var(--accent);
-      font-size: 1.1em;
-      margin-top: 10px;
+      font-size: 1.23em;
+      margin-top: 18px;
       display: block;
     }
-    .intro-img {
-      flex: 1;
-      max-width: 420px;
-      min-width: 200px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .intro-img img, .intro-img video {
-      width: 90%;
-      max-width: 350px;
-      border-radius: 22px;
-      box-shadow: 0 4px 34px #1112;
-      background: #fff;
-      object-fit: cover;
-    }
+    /* Remove video */
+    .intro-img { display: none !important; }
+
     .features-wrap { margin-bottom: 2.5rem; }
     .features-title {
       font-size: 2.2rem;
@@ -284,11 +298,11 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 62px;
+      gap: 180px;
       width: 100%;
       position: relative;
-      min-height: 130px;
-      margin-top: 80px; 
+      min-height: 210px;
+      margin-top: 80px;
     }
     .timeline-line {
       position: absolute;
@@ -317,9 +331,45 @@
       color: #18181b;
       box-shadow: 0 2px 18px #18181b25;
       cursor: pointer;
-      z-index: 1;
+      z-index: 2;
       isolation: isolate;
       transition: background 0.14s, border 0.14s, color 0.14s, transform 0.14s;
+      background-position: center 90px;
+      background-repeat: no-repeat;
+    }
+    /* faded icon behind each dot */
+    .timeline-dot:nth-child(2)::before {
+      content: '';
+      background: url('8.png') no-repeat center center/80px 80px;
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 90px; height: 90px;
+      transform: translate(-50%, -50%);
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .timeline-dot:nth-child(3)::before {
+      content: '';
+      background: url('12.png') no-repeat center center/80px 80px;
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 90px; height: 90px;
+      transform: translate(-50%, -50%);
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .timeline-dot:nth-child(4)::before {
+      content: '';
+      background: url('10.png') no-repeat center center/80px 80px;
+      position: absolute;
+      left: 50%; top: 50%;
+      width: 90px; height: 90px;
+      transform: translate(-50%, -50%);
+      opacity: 0.07;
+      z-index: 0;
+      pointer-events: none;
     }
     .timeline-dot:hover, .timeline-dot:focus {
       background: #18181b;
@@ -553,6 +603,9 @@
         margin-bottom: 0.6em;
       }
       .livefeed-card, .breakdown-section-card { padding: 1.2rem; }
+      .intro-title { font-size: 2.7rem; }
+      .intro-desc { font-size: 1.17rem; }
+      .intro-bg-img { width: 320px; }
     }
     @media (max-width: 900px) {
       .features-cards {
@@ -560,6 +613,7 @@
         gap: 1.6rem;
         align-items: center;
       }
+      .roadmap-timeline { gap: 65px; }
     }
     .faq-section {
       width: 100%;
@@ -662,6 +716,7 @@
   <main>
     <div class="container">
       <section id="intro" class="intro-section">
+        <img class="intro-bg-img" src="15.png" alt="" aria-hidden="true" />
         <div class="intro-content">
           <span class="intro-label">AI-Powered Crypto Market Intelligence</span>
           <h1 class="intro-title">Welcome to Crossr</h1>
@@ -670,12 +725,6 @@
             <b>Crossr</b> brings you actionable crypto insights, chart patterns, and market signals—automatically, every day.
             <span class="intro-bold">Never miss a trade, never fall behind.</span>
           </div>
-        </div>
-        <div class="intro-img">
-          <video autoplay loop muted playsinline style="width: 90%; max-width: 350px; border-radius: 22px; box-shadow: 0 4px 34px #1112; background: #fff; object-fit: cover;">
-            <source src="video.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-          </video>
         </div>
       </section>
       <hr class="divider">
@@ -721,8 +770,8 @@
           <div class="timeline-dot" tabindex="0">
             2
             <div class="roadmap-tooltip">
-              <span class="goal">Integrate Wallet Tracking</span>
-              <span class="impact">Add wallet tracking for transparent trade analytics and community leaderboards.</span>
+              <span class="goal">integrate prop firm and trading firm account sync</span>
+              <span class="impact">Enable users to securely connect and synchronize their proprietary trading firm and brokerage accounts directly to the platform.</span>
             </div>
             <span class="timeline-label">Q3<br>2025</span>
           </div>
@@ -733,22 +782,6 @@
               <span class="impact">Build tools for in-depth community sentiment analysis and peer leaderboards.</span>
             </div>
             <span class="timeline-label">Q4<br>2025</span>
-          </div>
-          <div class="timeline-dot" tabindex="0">
-            4
-            <div class="roadmap-tooltip">
-              <span class="goal">Custom Strategies</span>
-              <span class="impact">Enable users to deploy their own automated strategies and backtesting.</span>
-            </div>
-            <span class="timeline-label">Q1<br>2026</span>
-          </div>
-          <div class="timeline-dot" tabindex="0">
-            5
-            <div class="roadmap-tooltip">
-              <span class="goal">API Release</span>
-              <span class="impact">Release public API for developers and external integrations.</span>
-            </div>
-            <span class="timeline-label">Q2<br>2026</span>
           </div>
         </div>
       </section>
@@ -821,7 +854,7 @@
           <div class="faq-item">
             Is there an API?
             <div class="faq-answer">
-              Yes! The Crossr public API is scheduled for Q2 2026. Stay tuned for developer documentation and integrations.
+              Yes! The Crossr public API is scheduled for the end of Q2 2025. Stay tuned for developer documentation and integrations.
             </div>
           </div>
         </div>
