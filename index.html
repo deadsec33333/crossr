@@ -114,8 +114,6 @@
       z-index: 3;
       position: relative;
     }
-
-    /* Intro Section - MODIFIED */
     .intro-section {
       display: flex;
       flex-direction: column;
@@ -127,7 +125,6 @@
       position: relative;
       z-index: 1;
     }
-    /* background image styling */
     .intro-bg-img {
       position: absolute;
       left: 50%;
@@ -136,7 +133,7 @@
       width: 650px;
       max-width: 95vw;
       min-width: 250px;
-      opacity: 0.08; /* adjust transparency here */
+      opacity: 0.08;
       z-index: 0;
       pointer-events: none;
       user-select: none;
@@ -186,14 +183,16 @@
       margin-top: 18px;
       display: block;
     }
-    /* Remove video */
     .intro-img { display: none !important; }
 
-    .features-wrap { margin-bottom: 2.5rem; }
+    .features-wrap {
+      margin-bottom: 3.2rem;
+      padding: 74px 0 60px 0;
+    }
     .features-title {
-      font-size: 2.2rem;
+      font-size: 2.8rem;
       font-weight: 900;
-      margin-bottom: 2.2rem;
+      margin-bottom: 3.2rem;
       letter-spacing: -1px;
       color: var(--accent);
       text-align: center;
@@ -201,23 +200,25 @@
     .features-cards {
       display: flex;
       justify-content: center;
-      gap: 2.1rem;
+      gap: 3.2rem;
       margin: 0 auto;
+      flex-wrap: wrap;
     }
     .feature-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
-      padding: 1.7rem 1.5rem 1.4rem 1.5rem;
-      min-width: 270px;
-      max-width: 340px;
+      padding: 2.6rem 2.2rem 2.2rem 2.2rem;
+      min-width: 320px;
+      max-width: 420px;
       flex: 1 1 0;
       display: flex;
       flex-direction: column;
-      gap: 1.3rem;
+      gap: 1.8rem;
       align-items: flex-start;
-      min-height: 180px;
+      min-height: 210px;
+      font-size: 1.23rem;
       position: relative;
       overflow: hidden;
       transition: box-shadow 0.18s;
@@ -260,30 +261,43 @@
       pointer-events: none;
       z-index: 0;
     }
-    .feature-title { font-size: 1.16rem; font-weight: 800; color: var(--accent); letter-spacing: -0.2px; z-index: 1; }
+    .feature-title { font-size: 1.4rem; font-weight: 800; color: var(--accent); letter-spacing: -0.2px; z-index: 1; }
     .feature-list { list-style: none; padding: 0; margin: 0;}
     .feature-list li {
       display: flex;
       align-items: flex-start;
-      font-size: 1.02rem;
-      margin-bottom: 0.7em;
+      font-size: 1.18rem;
+      margin-bottom: 1em;
       gap: 13px;
       z-index: 1;
       position: relative;
     }
     .feature-list li::before {
       content: "";
-      background: url('9.png') no-repeat center center/23px 23px;
-      width: 23px; height: 23px;
+      background: url('9.png') no-repeat center center/26px 26px;
+      width: 26px; height: 26px;
       margin-top: 2px;
       flex-shrink: 0;
       display: inline-block;
     }
+
     .roadmap-wrap {
       max-width: 1100px;
       margin: 0 auto 3.5rem auto;
       padding-bottom: 1.6rem;
       position: relative;
+      background: url('16.png') center center/70% no-repeat;
+      background-blend-mode: lighten;
+      background-size: contain;
+    }
+    .roadmap-wrap::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0.78);
+      z-index: 0;
+      border-radius: 32px;
+      pointer-events: none;
     }
     .roadmap-title {
       font-size: 2.35rem;
@@ -292,24 +306,25 @@
       margin-bottom: 1.1rem;
       color: var(--accent);
       position: relative;
-      z-index: 1;
+      z-index: 2;
     }
     .roadmap-timeline {
       display: flex;
-      align-items: center;
+      align-items: flex-end;
       justify-content: center;
-      gap: 180px;
+      gap: 200px;
       width: 100%;
       position: relative;
-      min-height: 210px;
+      min-height: 240px;
       margin-top: 80px;
+      z-index: 2;
+      padding-bottom: 10px;
     }
     .timeline-line {
       position: absolute;
       left: 0;
       right: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      bottom: 42px;
       height: 5px;
       background: linear-gradient(90deg,#aaa 0%,#111 50%,#aaa 100%);
       z-index: 1;
@@ -336,8 +351,8 @@
       transition: background 0.14s, border 0.14s, color 0.14s, transform 0.14s;
       background-position: center 90px;
       background-repeat: no-repeat;
+      margin-bottom: 0px;
     }
-    /* faded icon behind each dot */
     .timeline-dot:nth-child(2)::before {
       content: '';
       background: url('8.png') no-repeat center center/80px 80px;
@@ -391,21 +406,23 @@
       top: 70px;
       transform: translateX(-50%);
       width: 100px;
+      z-index: 3;
     }
     .roadmap-tooltip {
       display: block;
       position: absolute;
       left: 50%;
-      bottom: 82px;
+      bottom: 92px; 
       transform: translateX(-50%);
       background: #fff;
       color: var(--accent);
-      min-width: 290px;
-      max-width: 350px;
+      min-width: 330px;
+      max-width: 700px;
+      width: 540px; 
       border-radius: 20px;
       box-shadow: 0 8px 32px #0003, 0 2px 8px #1113;
-      padding: 1.1rem 1.3rem 1.25rem 1.3rem;
-      font-size: 1.1rem;
+      padding: 1.1rem 2.2rem 1.25rem 2.2rem;
+      font-size: 1.15rem;
       border: 2px solid #111;
       z-index: 999999;
       pointer-events: auto;
@@ -413,6 +430,9 @@
       visibility: hidden;
       transition: opacity 0.2s, visibility 0.2s;
       animation: none;
+      white-space: pre-line;
+      overflow: visible;
+      box-sizing: border-box;
     }
     .timeline-dot:hover .roadmap-tooltip,
     .timeline-dot:focus .roadmap-tooltip {
@@ -450,248 +470,260 @@
       letter-spacing: -1px;
       color: var(--accent);
     }
-    .breakdown-section-card {
-      background: rgba(255,255,255,0.97);
-      border: 1.8px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2.1rem 2.7rem 1.7rem 2.7rem;
-      font-size: 1.18rem;
-      color: var(--accent);
-      margin-bottom: 1.2em;
-      position: relative;
-      max-width: 1100px;
-      margin-left: auto;
-      margin-right: auto;
-      overflow: hidden;
-      display: block;
-      min-width: 370px;
-      min-height: 325px;
-    }
-    .breakdown-section-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url('7.png') center center/75% no-repeat;
-      opacity: 0.13;
-      z-index: 0;
-      border-radius: inherit;
-      pointer-events: none;
-    }
-    .breakdown-section-card * { position: relative; z-index: 1; }
-    .breakdown-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 1.11em;
-    }
-    .breakdown-table tr {
-      vertical-align: top;
-      line-height: 1.85;
-    }
-    .breakdown-table td {
-      padding: 0.7em 0.2em 0.5em 0.2em;
-      border: none;
-    }
-    .breakdown-table td:first-child {
-      font-weight: 800;
-      min-width: 175px;
-      white-space: nowrap;
-      text-align: left;
-    }
-    .breakdown-table td:last-child {
-      padding-left: 1.8em;
-      font-weight: 400;
-    }
-    .breakdown-section-card .breakdown-bullet {
-      background: url('9.png') no-repeat center center/23px 23px;
-      width: 23px; height: 23px;
-      display: inline-block;
-      vertical-align: middle;
-      margin-right: 8px;
-    }
-    .breakdown-section-card .breakdown-table tr {
-      margin-bottom: 1.1em;
-    }
-    .livefeed-section {
-      max-width: 1120px;
-      margin: 0 auto 2.7rem auto;
-      padding-bottom: 0.3em;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      gap: 48px;
-    }
-    .livefeed-info {
-      flex: 1 1 260px;
-      font-size: 1.16rem;
-      padding-top: 1.1em;
-      padding-left: 12px;
-      font-weight: 500;
-      color: var(--accent);
-      min-width: 240px;
-    }
-    .livefeed-card {
-      flex: 2.2 1 440px;
-      background: var(--card-bg);
-      border: 1.8px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 2.1rem 2.7rem 1.7rem 2.7rem;
-      min-height: 320px;
-      min-width: 380px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: flex-start;
-    }
-    .livefeed-title {
-      font-size: 1.25rem;
-      font-weight: 800;
-      margin-bottom: 1.1em;
-    }
-    .livefeed-btn {
-      display: inline-block;
-      font-size: 1.14rem;
-      font-weight: 700;
-      background: linear-gradient(95deg,#111 60%,#333 100%);
-      color: #fff;
-      padding: 14px 32px;
-      border-radius: 15px;
-      margin-bottom: 18px;
-      box-shadow: 0 2px 18px #1112;
-      letter-spacing: 0.03em;
-      border: none;
-      cursor: pointer;
-      margin-top: 14px;
-      transition: background 0.18s, transform 0.15s;
-      outline: none;
-      animation: pulse-btn 2.4s infinite cubic-bezier(.4,0,.2,1);
-    }
-    .livefeed-btn:hover, .livefeed-btn:focus {
-      background: linear-gradient(95deg,#222 40%,#444 100%);
-      transform: scale(1.04);
-    }
-    @keyframes pulse-btn {
-      0% { box-shadow: 0 2px 18px #18181b22; }
-      70% { box-shadow: 0 0px 36px #1115; }
-      100% { box-shadow: 0 2px 18px #18181b22; }
-    }
-    .twitter-embed {
-      width: 100%;
-      height: 310px;
-      overflow: auto;
-      background: #fff;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      margin-top: 14px;
-    }
-    @media (max-width: 1050px) {
+      .breakdown-section-card {
+        background: rgba(255,255,255,0.97);
+        border: 1.8px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.1rem 2.7rem 1.7rem 2.7rem;
+        font-size: 1.18rem;
+        color: var(--accent);
+        margin-bottom: 1.2em;
+        position: relative;
+        max-width: 1100px;
+        margin-left: auto;
+        margin-right: auto;
+        overflow: hidden;
+        display: block;
+        min-width: 370px;
+        min-height: 325px;
+      }
+      .breakdown-section-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: url('7.png') center center/75% no-repeat;
+        opacity: 0.13;
+        z-index: 0;
+        border-radius: inherit;
+        pointer-events: none;
+      }
+      .breakdown-section-card * { position: relative; z-index: 1; }
+      .breakdown-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.11em;
+      }
+      .breakdown-table tr {
+        vertical-align: top;
+        line-height: 1.85;
+      }
+      .breakdown-table td {
+        padding: 0.7em 0.2em 0.5em 0.2em;
+        border: none;
+      }
+      .breakdown-table td:first-child {
+        font-weight: 800;
+        min-width: 175px;
+        white-space: nowrap;
+        text-align: left;
+      }
+      .breakdown-table td:last-child {
+        padding-left: 1.8em;
+        font-weight: 400;
+      }
+      .breakdown-section-card .breakdown-bullet {
+        background: url('9.png') no-repeat center center/23px 23px;
+        width: 23px; height: 23px;
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 8px;
+      }
+      .breakdown-section-card .breakdown-table tr {
+        margin-bottom: 1.1em;
+      }
       .livefeed-section {
-        flex-direction: column;
-        gap: 22px;
+        max-width: 1120px;
+        margin: 0 auto 2.7rem auto;
+        padding-bottom: 0.3em;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        gap: 48px;
+      }
+      .livefeed-info {
+        flex: 1 1 260px;
+        font-size: 1.25rem;
+        padding-top: 1.5em;
+        padding-left: 18px;
+        font-weight: 500;
+        color: var(--accent);
+        min-width: 240px;
       }
       .livefeed-card {
-        min-width: unset;
-      }
-    }
-    @media (max-width: 700px) {
-      .intro-section {
+        flex: 2.2 1 440px;
+        background: var(--card-bg);
+        border: 1.8px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+        padding: 2.5rem 2.7rem 2.3rem 2.7rem;
+        min-height: 450px;
+        min-width: 520px;
+        display: flex;
         flex-direction: column;
-        gap: 18px;
+        align-items: flex-start;
+        justify-content: flex-start;
       }
-      .intro-img {
-        margin-bottom: 0.6em;
+      .livefeed-title {
+        font-size: 1.5rem;
+        font-weight: 800;
+        margin-bottom: 1.3em;
       }
-      .livefeed-card, .breakdown-section-card { padding: 1.2rem; }
-      .intro-title { font-size: 2.7rem; }
-      .intro-desc { font-size: 1.17rem; }
-      .intro-bg-img { width: 320px; }
-    }
-    @media (max-width: 900px) {
-      .features-cards {
+      .livefeed-btn {
+        display: inline-block;
+        font-size: 1.23rem;
+        font-weight: 700;
+        background: linear-gradient(95deg,#111 60%,#333 100%);
+        color: #fff;
+        padding: 18px 38px;
+        border-radius: 15px;
+        margin-bottom: 22px;
+        box-shadow: 0 2px 18px #1112;
+        letter-spacing: 0.03em;
+        border: none;
+        cursor: pointer;
+        margin-top: 18px;
+        transition: background 0.18s, transform 0.15s;
+        outline: none;
+        animation: pulse-btn 2.4s infinite cubic-bezier(.4,0,.2,1);
+      }
+      .livefeed-btn:hover, .livefeed-btn:focus {
+        background: linear-gradient(95deg,#222 40%,#444 100%);
+        transform: scale(1.04);
+      }
+      @keyframes pulse-btn {
+        0% { box-shadow: 0 2px 18px #18181b22; }
+        70% { box-shadow: 0 0px 36px #1115; }
+        100% { box-shadow: 0 2px 18px #18181b22; }
+      }
+      .twitter-embed {
+        width: 100%;
+        height: 620px;
+        overflow: auto;
+        background: #fff;
+        border-radius: 14px;
+        border: 1.7px solid var(--border);
+        margin-top: 14px;
+        font-size: 1.23rem;
+        padding: 16px 8px 0 8px;
+      }
+      @media (max-width: 1400px) {
+        .features-cards { flex-wrap: wrap; }
+        .roadmap-timeline { gap: 120px; }
+      }
+      @media (max-width: 1050px) {
+        .livefeed-section {
+          flex-direction: column;
+          gap: 28px;
+        }
+        .livefeed-card {
+          min-width: unset;
+          padding: 1.7rem;
+        }
+        .roadmap-timeline { gap: 60px; }
+        .features-cards { gap: 2rem; }
+      }
+      @media (max-width: 700px) {
+        .intro-section {
+          flex-direction: column;
+          gap: 18px;
+        }
+        .intro-img {
+          margin-bottom: 0.6em;
+        }
+        .livefeed-card, .breakdown-section-card { padding: 1.2rem; }
+        .intro-title { font-size: 2.7rem; }
+        .intro-desc { font-size: 1.17rem; }
+        .intro-bg-img { width: 320px; }
+        .features-title { font-size: 1.4rem; }
+        .feature-card { padding: 1.2rem; min-width: 220px; max-width: 100%; font-size: 1rem; }
+        .twitter-embed { height: 380px; }
+        .roadmap-timeline { gap: 24px; }
+      }
+      @media (max-width: 900px) {
+        .features-cards {
+          flex-direction: column;
+          gap: 1.6rem;
+          align-items: center;
+        }
+      }
+      .faq-section {
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 2.6rem auto;
+        padding-bottom: 1.2rem;
+      }
+      .faq-title {
+        text-align: center;
+        font-size: 2.2rem;
+        font-weight: 900;
+        margin-bottom: 2rem;
+        letter-spacing: -1px;
+        color: var(--accent);
+      }
+      .faq-list {
+        display: flex;
         flex-direction: column;
-        gap: 1.6rem;
-        align-items: center;
+        gap: 1.3rem;
       }
-      .roadmap-timeline { gap: 65px; }
-    }
-    .faq-section {
-      width: 100%;
-      max-width: 800px;
-      margin: 0 auto 2.6rem auto;
-      padding-bottom: 1.2rem;
-    }
-    .faq-title {
-      text-align: center;
-      font-size: 2.2rem;
-      font-weight: 900;
-      margin-bottom: 2rem;
-      letter-spacing: -1px;
-      color: var(--accent);
-    }
-    .faq-list {
-      display: flex;
-      flex-direction: column;
-      gap: 1.3rem;
-    }
-    .faq-item {
-      background: #fff;
-      border-radius: 19px;
-      box-shadow: 0 4px 22px #0001;
-      border: 1.2px solid var(--border);
-      padding: 1.25em 2em 1.25em 2em;
-      font-size: 1.13rem;
-      font-weight: 700;
-      min-height: 74px;
-      transition: box-shadow 0.18s, border 0.18s;
-      position: relative;
-    }
-    .faq-item:hover, .faq-item:focus {
-      box-shadow: 0 8px 24px #1112;
-      border: 1.2px solid #aaa;
-    }
-    .faq-answer {
-      font-weight: 400;
-      font-size: 1.08rem;
-      color: #474747;
-      margin-top: 0.55em;
-      transition: max-height 0.18s;
-      min-height: 1.7em;
-      display: block;
-    }
-    footer {
-      width: 100vw;
-      background: #fff;
-      text-align: center;
-      padding: 2em 0 1em 0;
-      color: #888;
-      border-top: 1px solid var(--border);
-      font-size: 1rem;
-      font-weight: 500;
-    }
-    .footer-logo {
-      height: 32px;
-      width: 32px;
-      vertical-align: middle;
-      margin-right: 0.7em;
-      border-radius: 8px;
-      background: #fff;
-      object-fit: cover;
-    }
-    #bg-video, #bg-video-canvas {
-      position: fixed;
-      left: 0; top: 0;
-      width: 100vw; height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      margin: 0; padding: 0;
-      border: none;
-      outline: none;
-      display: block;
-      user-select: none;
-    }
-    #bg-video { visibility: hidden; }
-  </style>
+      .faq-item {
+        background: #fff;
+        border-radius: 19px;
+        box-shadow: 0 4px 22px #0001;
+        border: 1.2px solid var(--border);
+        padding: 1.25em 2em 1.25em 2em;
+        font-size: 1.13rem;
+        font-weight: 700;
+        min-height: 74px;
+        transition: box-shadow 0.18s, border 0.18s;
+        position: relative;
+      }
+      .faq-item:hover, .faq-item:focus {
+        box-shadow: 0 8px 24px #1112;
+        border: 1.2px solid #aaa;
+      }
+      .faq-answer {
+        font-weight: 400;
+        font-size: 1.08rem;
+        color: #474747;
+        margin-top: 0.55em;
+        transition: max-height 0.18s;
+        min-height: 1.7em;
+        display: block;
+      }
+      footer {
+        width: 100vw;
+        background: #fff;
+        text-align: center;
+        padding: 2em 0 1em 0;
+        color: #888;
+        border-top: 1px solid var(--border);
+        font-size: 1rem;
+        font-weight: 500;
+      }
+      .footer-logo {
+        height: 32px;
+        width: 32px;
+        vertical-align: middle;
+        margin-right: 0.7em;
+        border-radius: 8px;
+        background: #fff;
+        object-fit: cover;
+      }
+      #bg-video, #bg-video-canvas {
+        position: fixed;
+        left: 0; top: 0;
+        width: 100vw; height: 100vh;
+        z-index: 0;
+        pointer-events: none;
+        margin: 0; padding: 0;
+        border: none;
+        outline: none;
+        display: block;
+        user-select: none;
+      }
+      #bg-video { visibility: hidden; }
+    </style>
 </head>
 <body>
   <video id="bg-video" src="video.mp4" autoplay loop muted playsinline></video>
@@ -721,7 +753,7 @@
           <span class="intro-label">AI-Powered Crypto Market Intelligence</span>
           <h1 class="intro-title">Welcome to Crossr</h1>
           <div class="intro-desc">
-            Precision. Speed. Clarity.<br>
+            Hourly Precision, Daily Conviction, Zero Emotion.<br>
             <b>Crossr</b> brings you actionable crypto insights, chart patterns, and market signals—automatically, every day.
             <span class="intro-bold">Never miss a trade, never fall behind.</span>
           </div>
@@ -770,16 +802,16 @@
           <div class="timeline-dot" tabindex="0">
             2
             <div class="roadmap-tooltip">
-              <span class="goal">integrate prop firm and trading firm account sync</span>
-              <span class="impact">Enable users to securely connect and synchronize their proprietary trading firm and brokerage accounts directly to the platform.</span>
+              <span class="goal">Interface Expansion: App & Extension</span>
+              <span class="impact">Crossr becomes personal. Users connect their live chart feeds (via browser extension or mobile app). Real-time overlays: Bias zones, Liquidity draws, Structural alerts, Session-based triggers.</span>
             </div>
             <span class="timeline-label">Q3<br>2025</span>
           </div>
           <div class="timeline-dot" tabindex="0">
             3
             <div class="roadmap-tooltip">
-              <span class="goal">Community Analytics</span>
-              <span class="impact">Build tools for in-depth community sentiment analysis and peer leaderboards.</span>
+              <span class="goal">Autonomous Execution (Crossr AutoTrade)</span>
+              <span class="impact">Crossr will now trade for you, directly on your: Prop firm accounts, Broker accounts (via API). Parameters: Risk-controlled precision entries. Session-specific logic (NY / London / Asia mode), Configurable aggression (Scalp / Swing / Passive)📍 Built-in protection: No trade unless bias confirms. You become the observer. Crossr becomes the executor.</span>
             </div>
             <span class="timeline-label">Q4<br>2025</span>
           </div>
@@ -825,7 +857,7 @@
         <div class="livefeed-card">
           <div class="livefeed-title">Latest Analysis (via X.com)</div>
           <div class="twitter-embed">
-            <a class="twitter-timeline" data-height="270" href="https://twitter.com/AiCrossr?ref_src=twsrc%5Etfw">Tweets by AiCrossr</a>
+            <a class="twitter-timeline" data-height="600" href="https://twitter.com/AiCrossr?ref_src=twsrc%5Etfw">Tweets by AiCrossr</a>
           </div>
         </div>
       </section>
@@ -836,13 +868,15 @@
           <div class="faq-item">
             What is Crossr?
             <div class="faq-answer">
-              Crossr is an AI-powered crypto market analysis tool providing actionable insights and daily signals for traders.
+              Crossr is a fully automated market bias system built on ICT principles.
+              It delivers hourly and daily directional analysis with zero emotion and zero indicators — just structure, displacement, and liquidity logic.
             </div>
           </div>
           <div class="faq-item">
             How often is the analysis updated?
             <div class="faq-answer">
-              Every day! Crossr posts daily chart patterns, market analysis, and real-time alerts as new data emerges.
+             Analysis is updated hourly and daily, depending on timeframe and session.
+             All updates are live-posted on X — no refresh needed, no login required.
             </div>
           </div>
           <div class="faq-item">
@@ -854,7 +888,8 @@
           <div class="faq-item">
             Is there an API?
             <div class="faq-answer">
-              Yes! The Crossr public API is scheduled for the end of Q2 2025. Stay tuned for developer documentation and integrations.
+              Yes. Crossr offers a private API for integration with trading platforms, dashboards, bots, and signal systems.
+              Custom access available on request. 
             </div>
           </div>
         </div>
@@ -867,15 +902,15 @@
     <br>
     &copy; 2025 All rights reserved.
   </footer>
-  <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
   <script>
     const bgVideo = document.getElementById('bg-video');
     const bgCanvas = document.getElementById('bg-video-canvas');
     const ctx = bgCanvas.getContext('2d');
     let mouseX = window.innerWidth / 2;
     let mouseY = window.innerHeight / 2;
-    const RADIUS = 20; // Feathered circle radius in px
-    const FEATHER = 10; // Feathered softness in px
+    const RADIUS = 20; 
+    const FEATHER = 10; 
 
     function resizeBgCanvas() {
       bgCanvas.width = window.innerWidth;
